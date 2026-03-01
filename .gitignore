@@ -28,7 +28,7 @@ __MACOSX/
 .DS_Store
 
 # Project specific
-*.csv
+# *.csv  - uncomment to ignore all CSVs (data/supermarket_sales.csv is required for deployment)
 *.xlsx
 *.xls
 data/
