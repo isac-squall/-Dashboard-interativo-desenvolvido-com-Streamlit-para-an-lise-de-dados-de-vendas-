@@ -90,4 +90,4 @@ Para problemas ou sugestões, abra uma issue no repositório.
 
 ---
 
-**Desenvolvido com ❤️ em 2026**
+**Desenvolvido por Isac.Cavalheiro ❤️ em 2026**
