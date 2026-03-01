@@ -120,7 +120,7 @@ if date_col_available and val_col:
             trend['Meta'] = meta_sales
             fig_trend.add_scatter(x=trend['Month'], y=trend['Meta'], mode='lines', name='Meta', line={'dash':'dash'})  # type: ignore
         st.subheader("📈 Tendência Mensal")
-        st.plotly_chart(fig_trend, use_container_width=True, key="trend")
+        st.plotly_chart(fig_trend, width='stretch', key="trend")
     except Exception:
         pass
 # - receita total
@@ -227,7 +227,7 @@ with vendas_tab:
         try:
             fig_date = px.bar(df_filtered, x=date_col, y=numeric_cols[0],  # type: ignore
                              title="Faturamento por dia")
-            col1.plotly_chart(fig_date, use_container_width=True, key="date_chart")
+            col1.plotly_chart(fig_date, width='stretch', key="date_chart")
         except Exception as e:
             col1.warning(f"Não foi possível criar este gráfico: {e}")
     # identificação da coluna de produto
@@ -238,7 +238,7 @@ with vendas_tab:
             top_products = df_filtered.groupby(prod_col)[val_col].sum().nlargest(10).reset_index()  # type: ignore
             fig_top = px.bar(top_products, x=prod_col, y=val_col, title="Top 10 produtos por receita")  # type: ignore
             st.subheader("🔝 Top Produtos")
-            st.plotly_chart(fig_top, use_container_width=True, key="top_products")
+            st.plotly_chart(fig_top, width='stretch', key="top_products")
         except Exception as e:
             st.warning(f"Não foi possível gerar gráfico de top produtos: {e}")
     if branch_cols and val_col:
@@ -247,7 +247,7 @@ with vendas_tab:
             avg_by_branch = df_filtered.groupby(bc)[val_col].mean().reset_index()  # type: ignore
             fig_branch = px.bar(avg_by_branch, x=bc, y=val_col, title="Ticket médio por filial/cidade")  # type: ignore
             st.subheader("📍 Ticket médio por filial")
-            st.plotly_chart(fig_branch, use_container_width=True, key="branch_ticket")
+            st.plotly_chart(fig_branch, width='stretch', key="branch_ticket")
         except Exception as e:
             st.warning(f"Não foi possível gerar gráfico de ticket por filial: {e}")
     if rating_cols:
@@ -257,7 +257,7 @@ with vendas_tab:
             avg_rating = df_filtered[rt].mean()  # type: ignore
             st.write(f"Avaliação média: {avg_rating:.2f}")
             fig_hist = px.histogram(df_filtered, x=rt, nbins=10, title="Distribuição de avaliações")  # type: ignore
-            st.plotly_chart(fig_hist, use_container_width=True, key="hist_rating")
+            st.plotly_chart(fig_hist, width='stretch', key="hist_rating")
         except Exception as e:
             st.warning(f"Erro ao analisar avaliações: {e}")
 
@@ -311,7 +311,7 @@ with vendas_tab:
             fig_prod = px.bar(df_filtered, x=date_col if date_col in df_filtered.columns else numeric_cols[0],  # type: ignore
                              y=cat_col, title="Distribuição por categoria",
                              orientation="v")
-            col2.plotly_chart(fig_prod, use_container_width=True, key="cat_dist")
+            col2.plotly_chart(fig_prod, width='stretch', key="cat_dist")
         except Exception as e:
             col2.warning(f"Não foi possível criar este gráfico: {e}")
 
@@ -327,7 +327,7 @@ with vendas_tab:
             city_total = df_filtered.groupby(location_col)[[numeric_cols[0]]].sum().reset_index()  # type: ignore
             fig_city = px.bar(city_total, x=location_col, y=numeric_cols[0],  # type: ignore
                              title=f"Faturamento por {location_col.lower()}")
-            col3.plotly_chart(fig_city, use_container_width=True, key="city_sales")
+            col3.plotly_chart(fig_city, width='stretch', key="city_sales")
         except Exception as e:
             col3.warning(f"Não foi possível criar este gráfico: {e}")
 
@@ -339,7 +339,7 @@ with vendas_tab:
                 payment_col = payment_cols[0]
                 fig_kind = px.pie(df_filtered, values=numeric_cols[0], names=payment_col,  # type: ignore
                                 title="Faturamento por tipo de pagamento")
-                col4.plotly_chart(fig_kind, use_container_width=True, key="payment_pie")
+                col4.plotly_chart(fig_kind, width='stretch', key="payment_pie")
             else:
                 col4.info("Nenhuma coluna de pagamento encontrada")
         except Exception as e:
@@ -356,7 +356,7 @@ with vendas_tab:
                 location_col = location_cols[0]
                 fig_rating = px.bar(df_filtered, y=rating_col, x=location_col,  # type: ignore
                                    title="Avaliação por localidade")
-                col5.plotly_chart(fig_rating, use_container_width=True, key="rating_by_loc")
+                col5.plotly_chart(fig_rating, width='stretch', key="rating_by_loc")
             else:
                 col5.info("Nenhuma coluna de avaliação encontrada")
         except Exception as e:
@@ -373,7 +373,7 @@ with clientes_tab:
         cust_summary.columns = [cust_col, 'Count']
         fig_cust = px.bar(cust_summary, x=cust_col, y='Count',  # type: ignore
                           title="Quantidade por tipo de cliente")
-        st.plotly_chart(fig_cust, use_container_width=True, key="cust_bar")
+        st.plotly_chart(fig_cust, width='stretch', key="cust_bar")
         # ticket médio por tipo de cliente
         if val_col:
             avg_by_cust = df_filtered.groupby(cust_col)[val_col].mean().reset_index()  # type: ignore
@@ -385,7 +385,7 @@ with clientes_tab:
         gen_summary.columns = [gen_col, 'Count']
         fig_gen = px.pie(gen_summary, names=gen_col, values='Count',  # type: ignore
                          title="Distribuição por gênero")
-        st.plotly_chart(fig_gen, use_container_width=True, key="gender_pie")
+        st.plotly_chart(fig_gen, width='stretch', key="gender_pie")
 
 with produtos_tab:
     st.subheader("📦 Análise de Produtos")
@@ -396,7 +396,7 @@ with produtos_tab:
             cat_sales = df_filtered.groupby(cat_col)[val_col].sum().reset_index()  # type: ignore
             fig_cat = px.bar(cat_sales, x=cat_col, y=val_col,  # type: ignore
                              title="Faturamento por categoria de produto")
-            st.plotly_chart(fig_cat, use_container_width=True, key="cat_sales")
+            st.plotly_chart(fig_cat, width='stretch', key="cat_sales")
     # top produtos
     prod_cols = [col for col in string_cols if col.lower() in ['product', 'produto', 'item', 'product line']]  # type: ignore
     if prod_cols and val_col:
@@ -404,4 +404,4 @@ with produtos_tab:
         top_products = df_filtered.groupby(prod_col)[val_col].sum().nlargest(10).reset_index()  # type: ignore
         fig_top2 = px.bar(top_products, x=prod_col, y=val_col,  # type: ignore
                           title="Top 10 produtos por receita")
-        st.plotly_chart(fig_top2, use_container_width=True, key="top_products_tab")
+        st.plotly_chart(fig_top2, width='stretch', key="top_products_tab")
