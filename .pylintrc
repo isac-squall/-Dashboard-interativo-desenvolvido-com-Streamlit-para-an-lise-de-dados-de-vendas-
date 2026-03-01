@@ -1,0 +1,28 @@
+[MASTER]
+# Add files or directories to the blacklist. They should be base names, not paths.
+ignore=.venv,__pycache__
+
+[MESSAGES CONTROL]
+# Disable specific warnings
+disable=
+    missing-docstring,
+    too-many-arguments,
+    too-many-locals,
+    unused-import,
+    line-too-long,
+    C0103,  # Invalid constant name
+    W0212,  # Access to protected member
+    R0913,  # Too many arguments
+
+[FORMAT]
+max-line-length=100
+
+[DESIGN]
+max-locals=20
+max-branches=15
+max-statements=50
+
+[TYPING]
+ignored-classes=
+    sqlalchemy.orm.scoping.scoped_session,
+    sqlalchemy.orm.session.Session

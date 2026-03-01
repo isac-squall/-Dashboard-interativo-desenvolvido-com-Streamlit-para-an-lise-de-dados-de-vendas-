@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.Python
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# macOS
+__MACOSX/
+.DS_Store
+
+# Project specific
+*.csv
+*.xlsx
+*.xls
+data/
+logs/
+*.log
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Cache
+.cache/
+*.cache

@@ -1,0 +1,21 @@
+{
+  "include": ["Supermarket Sales"],
+  "exclude": ["**/__pycache__", ".venv", "node_modules"],
+  "typeCheckingMode": "basic",
+  "pythonVersion": "3.10",
+  "reportGeneralTypeIssues": false,
+  "reportPrivateImportUsage": false,
+  "reportUnknownMemberType": false,
+  "reportUnknownParameterType": false,
+  "reportUnknownVariableType": false,
+  "reportUnknownArgumentType": false,
+  "reportUnknownLambdaType": false,
+  "reportUndefinedVariable": false,
+  "reportOptionalMemberAccess": false,
+  "reportOptionalSubscript": false,
+  "reportOptionalOperand": false,
+  "reportOptionalCallOperand": false,
+  "reportOptionalIterable": false,
+  "reportOptionalContextManager": false,
+  "reportOptionalReturn": false
+}
